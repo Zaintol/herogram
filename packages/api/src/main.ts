@@ -15,17 +15,19 @@ const app = express();
 
 app.use(
   cors({
-    origin: 'http://138.68.73.177:4200', // Update this to your frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    origin: ['http://138.68.73.177:4200','*/*,*'], // Update this to your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'], // Specify allowed methods
     credentials: true, // If you're using cookies or sessions
   })
 );
+
+
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
-app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
+app.use('/api/auth', authRoutes);
 
 // Error handling
 app.use(errorHandler);

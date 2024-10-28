@@ -67,7 +67,6 @@ const Dashboard: React.FC = () => {
         movedFile.id,
         destinationIndex
       );
-      
       // Update state with the response from the server
       setFiles(updatedFiles);
     } catch (err) {
@@ -132,9 +131,34 @@ const Dashboard: React.FC = () => {
   const handleShare = async (fileId: string) => {
     try {
       const shareLink = await fileService.getShareLink(fileId);
-      // Copy link to clipboard
-      await navigator.clipboard.writeText(`${window.location.origin}/file/${shareLink}`);
-      alert('Share link copied to clipboard!');
+      const fullShareLink = `${window.location.origin}/files/${shareLink}`;
+
+      // Try different sharing methods
+      if (navigator.clipboard && window.isSecureContext) {
+        // Modern browsers with secure context
+        await navigator.clipboard.writeText(fullShareLink);
+        alert('Share link copied to clipboard!');
+      } else {
+        // Fallback method
+        const textArea = document.createElement('textarea');
+        textArea.value = fullShareLink;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          alert('Share link copied to clipboard!');
+        } catch (err) {
+          // If copy fails, at least show the link
+          alert(`Share link: ${fullShareLink}`);
+        } finally {
+          textArea.remove();
+        }
+      }
     } catch (err) {
       console.error('Error sharing file:', err);
       alert('Failed to generate share link');
