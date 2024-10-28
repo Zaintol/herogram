@@ -127,7 +127,14 @@ const Dashboard: React.FC = () => {
       handleAddTag(fileId);
     }
   };
+  const handleView = async (fileId:string) => {
+    try{
+      
+    }
+    catch(err){
 
+    }
+  }
   const handleShare = async (fileId: string) => {
     try {
       const shareLink = await fileService.getShareLink(fileId);
@@ -260,6 +267,16 @@ const Dashboard: React.FC = () => {
                                 className={styles.shareButton}
                               >
                                 Share
+                              </button>
+                            </div>
+                          </td>
+                          <td>
+                            <div className={styles.actionButtons}>
+                              <button 
+                                onClick={() => handleShare(file.id)}
+                                className={styles.viewButton}
+                              >
+                                View
                               </button>
                             </div>
                           </td>
