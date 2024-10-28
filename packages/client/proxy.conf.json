@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "${VITE_API_URL}:${BACKEND_PORT}",
+    "target": "${VITE_API_URL}",
     "secure": false,
     "changeOrigin": true
   }
