@@ -149,5 +149,26 @@ export const fileService = {
       }
       throw new Error('Failed to fetch shared file');
     }
+  },
+
+  async getFile(fileId: string): Promise<UploadResponse> {
+    try {
+      const response = await axios.get<UploadResponse>(
+        `${API_URL}/files/${fileId}`, // Add /api prefix
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        }
+      );
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          throw new Error(error.response.data.message || 'Failed to fetch file');
+        }
+      }
+      throw new Error('Failed to fetch file');
+    }
   }
 };

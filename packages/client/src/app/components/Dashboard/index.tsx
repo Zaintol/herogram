@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 import styles from './dashboard.module.css';
 import FileUpload from '../FileUpload';
 import { fileService } from '../../../services/fileService';
+import { useNavigate } from 'react-router-dom';
 
 interface File {
   id: string;
@@ -21,6 +22,7 @@ const Dashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [newTag, setNewTag] = useState('');
   const [editingFileId, setEditingFileId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFiles();
@@ -127,14 +129,11 @@ const Dashboard: React.FC = () => {
       handleAddTag(fileId);
     }
   };
-  const handleView = async (fileId:string) => {
-    try{
-      
-    }
-    catch(err){
 
-    }
-  }
+  const handleView = (fileId: string) => {
+    navigate(`/view/${fileId}`);
+  };
+
   const handleShare = async (fileId: string) => {
     try {
       const shareLink = await fileService.getShareLink(fileId);
@@ -273,7 +272,7 @@ const Dashboard: React.FC = () => {
                           <td>
                             <div className={styles.actionButtons}>
                               <button 
-                                onClick={() => handleShare(file.id)}
+                                onClick={() => handleView(file.id)}
                                 className={styles.viewButton}
                               >
                                 View

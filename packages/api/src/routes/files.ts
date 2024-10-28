@@ -327,4 +327,34 @@ router.get('/shared/:shareLink', async (req, res) => {
   }
 });
 
+// Add this new endpoint for getting a single file
+router.get('/:fileId', auth, async (req: AuthRequest, res) => {
+  try {
+    const file = await File.findOne({ _id: req.params.fileId, owner: req.user.id });
+    
+    if (!file) {
+      return res.status(404).json({ message: 'File not found' });
+    }
+
+    // Increment views
+    file.views += 1;
+    await file.save();
+
+    // Return formatted response
+    res.json({
+      id: file._id.toString(),
+      name: file.originalName,
+      url: `/uploads/${file.filename}`,
+      mimeType: file.mimeType,
+      views: file.views,
+      createdAt: file.createdAt,
+      tags: file.tags,
+      position: file.position
+    });
+  } catch (error) {
+    console.error('Error fetching file:', error);
+    res.status(500).json({ message: 'Error fetching file' });
+  }
+});
+
 export default router;
