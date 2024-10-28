@@ -232,12 +232,6 @@ const Dashboard: React.FC = () => {
                           <td>
                             <div className={styles.actionButtons}>
                               <button 
-                                onClick={() => window.open(file.url, '_blank')}
-                                className={styles.viewButton}
-                              >
-                                View
-                              </button>
-                              <button 
                                 onClick={() => handleShare(file.id)}
                                 className={styles.shareButton}
                               >
