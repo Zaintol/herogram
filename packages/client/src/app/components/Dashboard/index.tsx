@@ -136,8 +136,8 @@ const Dashboard: React.FC = () => {
 
   const handleShare = async (fileId: string) => {
     try {
-      const shareLink = await fileService.getShareLink(fileId);
-      const fullShareLink = `${window.location.origin}/files/${shareLink}`;
+      const shareLink = `${fileId}`;
+      const fullShareLink = `${window.location.origin}/view/${shareLink}`;
 
       // Try different sharing methods
       if (navigator.clipboard && window.isSecureContext) {

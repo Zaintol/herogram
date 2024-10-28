@@ -62,25 +62,6 @@ const FileView: React.FC = () => {
         <Typography variant="body2" color="textSecondary" gutterBottom>
           Views: {file.views}
         </Typography>
-        {file.mimeType.startsWith('image/') ? (
-          <Box mt={2}>
-            <img 
-              src={`${file.path}`} 
-              alt={file.name} 
-              style={{ maxWidth: '100%', height: 'auto' }}
-            />
-          </Box>
-        ) : (
-          <Box mt={2}>
-            <video 
-              controls 
-              style={{ maxWidth: '100%', height: 'auto' }}
-            >
-              <source src={`${file.path}`} type={file.mimeType} />
-              Your browser does not support the video tag.
-            </video>
-          </Box>
-        )}
       </Paper>
     </Box>
   );
