@@ -1,0 +1,39 @@
+.dropzone {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 2rem;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropzone:hover {
+  border-color: #666;
+}
+
+.active {
+  border-color: #2196f3;
+  background: #e3f2fd;
+}
+
+.uploading {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.error {
+  color: #f44336;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.uploadingMessage {
+  color: #1976d2;
+}

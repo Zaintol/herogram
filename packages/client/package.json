@@ -1,0 +1,17 @@
+{
+  "name": "@file-sharing-app/client",
+  "version": "1.0.0",
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.0",
+    "axios": "^1.6.0",
+    "react": "18.3.1",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-router-dom": "6.11.2",
+    "jwt-decode": "^3.1.2"
+  }
+}
