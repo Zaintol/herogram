@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Make sure this matches your backend URL
-const API_URL = process.env.NX_API_URL || 'http://localhost:3333/api';
+const API_URL = `${process.env.VITE_API_URL}/api` || 'http://localhost:3333/api';
 
 export interface UploadResponse {
   id: string;

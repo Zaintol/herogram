@@ -203,7 +203,7 @@ router.patch('/:fileId/tags', auth, async (req: AuthRequest, res) => {
     res.json({
       id: file._id,
       name: file.originalName,
-      url: `http://localhost:3333/uploads/${file.filename}`,
+      url: `${process.env.VITE_API_URL}/uploads/${file.filename}`,
       tags: file.tags,
       views: file.views,
       createdAt: file.createdAt
@@ -262,7 +262,7 @@ router.patch('/:fileId/position', auth, async (req: AuthRequest, res) => {
     const filesWithUrls = updatedFiles.map(file => ({
       id: file._id.toString(),
       name: file.originalName,
-      url: `http://localhost:3333/uploads/${file.filename}`,
+      url: `${process.env.VITE_API_URL}/uploads/${file.filename}`,
       tags: file.tags,
       views: file.views,
       createdAt: file.createdAt,

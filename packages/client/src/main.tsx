@@ -6,7 +6,7 @@ import axios from 'axios';
 import App from './app/app';
 
 // Set default base URL for axios
-axios.defaults.baseURL = 'http://localhost:3333';
+axios.defaults.baseURL = `${process.env.VITE_API_URL}`;
 
 // Set default auth header if token exists
 const token = localStorage.getItem('token');
