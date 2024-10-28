@@ -11,10 +11,10 @@ const router = express.Router();
 
 // Configure multer for file upload
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '../../uploads/'))
   },
-  filename: (req, file, cb) => {
+  filename: function (req, file, cb) {
     const uniqueSuffix = crypto.randomBytes(16).toString('hex');
     cb(null, uniqueSuffix + path.extname(file.originalname));
   },
@@ -67,7 +67,7 @@ router.post('/upload', auth, upload.single('file'), async (req: AuthRequest, res
     res.status(201).json({
       id: file._id,
       name: file.originalName,
-      url: `http://localhost:3333/uploads/${file.filename}`,
+      url: `/uploads/${file.filename}`, // Remove the host part
       tags: file.tags,
       views: file.views,
       createdAt: file.createdAt
@@ -88,7 +88,7 @@ router.get('/', auth, async (req: AuthRequest, res) => {
     const filesWithUrls = files.map(file => ({
       id: file._id.toString(), // Explicitly convert ObjectId to string
       name: file.originalName,
-      url: `http://localhost:3333/uploads/${file.filename}`,
+      url: `/uploads/${file.filename}`, // Remove the host part
       tags: file.tags,
       views: file.views,
       createdAt: file.createdAt,
@@ -314,7 +314,7 @@ router.get('/shared/:shareLink', async (req, res) => {
     res.json({
       id: file._id.toString(),
       name: file.originalName,
-      url: `http://localhost:3333/uploads/${file.filename}`,
+      url: `/uploads/${file.filename}`, // Remove the host part
       mimeType: file.mimeType,
       views: file.views,
       createdAt: file.createdAt,

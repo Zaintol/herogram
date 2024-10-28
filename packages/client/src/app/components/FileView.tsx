@@ -5,7 +5,7 @@ import { fileService } from '../../services/fileService';
 
 interface FileData {
   name: string;
-  url: string;
+  path: string;
   mimeType: string;
   views: number;
 }
@@ -21,7 +21,12 @@ const FileView: React.FC = () => {
       try {
         if (!shareId) return;
         const fileData = await fileService.getSharedFile(shareId);
-        setFile(fileData);
+        setFile({
+          name: fileData.name,
+          path: fileData.path, // Using url as path since it's required
+          mimeType: fileData.mimeType,
+          views: fileData.views
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Error loading file');
       } finally {
@@ -60,7 +65,7 @@ const FileView: React.FC = () => {
         {file.mimeType.startsWith('image/') ? (
           <Box mt={2}>
             <img 
-              src={file.url} 
+              src={`${file.path}`} 
               alt={file.name} 
               style={{ maxWidth: '100%', height: 'auto' }}
             />
@@ -71,7 +76,7 @@ const FileView: React.FC = () => {
               controls 
               style={{ maxWidth: '100%', height: 'auto' }}
             >
-              <source src={file.url} type={file.mimeType} />
+              <source src={`${file.path}`} type={file.mimeType} />
               Your browser does not support the video tag.
             </video>
           </Box>

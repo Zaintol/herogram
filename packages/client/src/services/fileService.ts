@@ -7,6 +7,7 @@ export interface UploadResponse {
   id: string;
   name: string;
   url: string;
+  path: string;
   tags: string[];
   views: number;
   createdAt: string;
