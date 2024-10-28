@@ -13,14 +13,13 @@ import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
 
-// Update CORS configuration
-app.use(cors({
-  origin: `${process.env.VITE_CLIENT_URL}:${process.env.FRONTEND_PORT}`,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+app.use(
+  cors({
+    origin: 'http://138.68.73.177:4200', // Update this to your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+    credentials: true, // If you're using cookies or sessions
+  })
+);
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

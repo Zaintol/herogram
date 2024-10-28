@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Make sure this matches your backend URL
-const API_URL = `${process.env.VITE_API_URL}/api` || 'http://localhost:3333/api';
+const API_URL = `http://138.68.73.177:3333/api` || 'http://localhost:3333/api';
 
 export interface UploadResponse {
   id: string;
@@ -22,7 +22,7 @@ export const fileService = {
 
     try {
       const response = await axios.post<UploadResponse>(
-        `${API_URL}/files/upload`,
+    	`${API_URL}/files/upload`,
         formData,
         {
           headers: {
