@@ -8,6 +8,7 @@ import {
   Container,
 } from '@mui/material';
 import { useAuth } from '../../../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -21,7 +22,16 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            File Sharing App
+             <Link to="/" style={{ textDecoration: 'none' }}>
+                <Typography variant="h6"
+                  component="div"
+                  color={"white"}
+                  sx={{ flexGrow: 1 }}
+                >
+                File Sharing App
+                </Typography>
+              </Link>
+            
           </Typography>
           {user && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
