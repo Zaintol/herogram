@@ -15,5 +15,30 @@ services:
       - mongodb_data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
+  client:
+    build:
+      context: ./packages/client
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    environment:
+      - PORT=${FRONTEND_PORT}
+      - VITE_CLIENT_URL=${VITE_CLIENT_URL}
+      - VITE_API_URL=${VITE_API_URL}
+      - BACKEND_PORT=${BACKEND_PORT}
+
+  api:
+    build:
+      context: ./packages/api
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    environment:
+      - PORT=${BACKEND_PORT}
+      - VITE_CLIENT_URL=${VITE_CLIENT_URL}
+      - VITE_API_URL=${VITE_API_URL}
+      - FRONTEND_PORT=${FRONTEND_PORT}
+      - MONGODB_URI=${MONGODB_URI}
+    depends_on:
+      - mongodb
+
 volumes:
   mongodb_data:

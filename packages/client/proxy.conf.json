@@ -1,6 +1,7 @@
 {
-  "/uploads": {
-    "target": "http://localhost:3333",
-    "secure": false
+  "/api": {
+    "target": "${VITE_API_URL}:${BACKEND_PORT}",
+    "secure": false,
+    "changeOrigin": true
   }
 }

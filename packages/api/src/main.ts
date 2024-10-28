@@ -15,8 +15,8 @@ const app = express();
 
 // Update CORS configuration
 app.use(cors({
-  origin: 'http://localhost:4200', // Frontend URL
-  credentials: true, // Important for cookies/auth
+  origin: `${process.env.VITE_CLIENT_URL}:${process.env.FRONTEND_PORT}`,
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -38,11 +38,11 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-const port = process.env.PORT || 3333;
+const port = process.env.BACKEND_PORT || 3000;
 const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+  console.log(`API is running at ${process.env.VITE_API_URL}:${port}/api`);
 });
 
 server.on('error', console.error);
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-that-should-be-in-env';
+const JWT_SECRET = process.env.JWT_SECRET || 'default-secret-key';
