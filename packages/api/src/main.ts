@@ -34,7 +34,7 @@ app.use('/api/auth', authRoutes);
 
 app.use(errorHandler);
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://admin:password123@localhost:27017/file-sharing-app?authSource=admin';
+const MONGODB_URI = process.env.NX_PUBLIC_MONGO_DB;
 
 mongoose
   .connect(MONGODB_URI)
