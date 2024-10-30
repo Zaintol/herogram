@@ -328,9 +328,9 @@ router.get('/shared/:shareLink', async (req, res) => {
 });
 
 // Add this new endpoint for getting a single file
-router.get('/:fileId', auth, async (req: AuthRequest, res) => {
+router.get('/:fileId', async (req, res) => {
   try {
-    const file = await File.findOne({ _id: req.params.fileId, owner: req.user.id });
+    const file = await File.findOne({ _id: req.params.fileId });
     
     if (!file) {
       return res.status(404).json({ message: 'File not found' });

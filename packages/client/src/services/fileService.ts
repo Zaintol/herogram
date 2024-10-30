@@ -155,11 +155,6 @@ export const fileService = {
     try {
       const response = await axios.get<UploadResponse>(
         `${API_URL}/files/${fileId}`, // Add /api prefix
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        }
       );
       return response.data;
     } catch (error) {
