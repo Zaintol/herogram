@@ -7,6 +7,9 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"],
     "default": ["sharedGlobals"]
   },
+  "options": {
+    "envFile": "packages/client/.env"
+  },
   "plugins": [
     {
       "plugin": "@nx/webpack/plugin",

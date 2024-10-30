@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://138.68.73.177:4200','*/*,*'], // Update this to your frontend URL
+    origin: [process.env.NX_PUBLIC_CLIENT_URL,'*/*,*'], // Update this to your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH'], // Specify allowed methods
     credentials: true, // If you're using cookies or sessions
   })
@@ -29,6 +29,7 @@ app.use('/api/files', fileRoutes);
 app.use('/api/auth', authRoutes);
 
 // Error handling
+
 app.use(errorHandler);
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://admin:password123@localhost:27017/file-sharing-app?authSource=admin';
@@ -40,7 +41,7 @@ mongoose
 
 const port = process.env.BACKEND_PORT || 3000;
 const server = app.listen(port, () => {
-  console.log(`API is running at ${process.env.VITE_API_URL}:${port}/api`);
+  console.log(`API is running at ${process.env.NX_PUBLIC_API_URL}/api`);
 });
 
 server.on('error', console.error);

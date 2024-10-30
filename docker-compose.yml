@@ -23,7 +23,7 @@ services:
     environment:
       - PORT=${FRONTEND_PORT}
       - VITE_CLIENT_URL=${VITE_CLIENT_URL}
-      - VITE_API_URL=${VITE_API_URL}
+      - NX_PUBLIC_API_URL=${NX_PUBLIC_API_URL}
       - BACKEND_PORT=${BACKEND_PORT}
 
   api:
@@ -34,7 +34,7 @@ services:
     environment:
       - PORT=${BACKEND_PORT}
       - VITE_CLIENT_URL=${VITE_CLIENT_URL}
-      - VITE_API_URL=${VITE_API_URL}
+      - NX_PUBLIC_API_URL=${NX_PUBLIC_API_URL}
       - FRONTEND_PORT=${FRONTEND_PORT}
       - MONGODB_URI=${MONGODB_URI}
     depends_on:

@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+.npm
 tmp
 /out-tsc
 

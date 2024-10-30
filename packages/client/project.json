@@ -6,10 +6,17 @@
   "tags": [],
   "// targets": "to see all targets run: nx show project client --web",
   "targets": {},
+  "build":{
+    "configurations": {
+      "development": {
+        "REACT_APP_API_URL":"http://localhost:3333"
+      }
+    }
+  },
   "serve": {
     "executor": "@nx/webpack:dev-server",
     "options": {
-      "proxyConfig": "packages/client/proxy.conf.json"
+      "proxyConfig": "packages/client/proxy.conf.json",
     }
   }
 }
