@@ -64,7 +64,7 @@ const FileViewer: React.FC = () => {
           <video 
             controls 
             style={{ width: '100%', maxHeight: '500px' }}
-            src={`${process.env.VITE_API_URL}/api${file.path}`}
+            src={`${process.env.NX_PUBLIC_API_URL}${file.url}`}
           >
             Your browser does not support the video tag.
           </video>
@@ -74,7 +74,7 @@ const FileViewer: React.FC = () => {
       return (
         <Box sx={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
           <img 
-            src={`${process.env.VITE_API_URL}/api${file.path}`}
+            src={`${process.env.NX_PUBLIC_API_URL}${file.url}`}
             alt={file.name}
             style={{ width: '100%', height: 'auto' }}
           />
@@ -108,7 +108,7 @@ const FileViewer: React.FC = () => {
         )}
       </Paper>
       
-      {/* {renderContent()} */}
+      {renderContent()}
     </Box>
   );
 };

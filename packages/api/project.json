@@ -21,6 +21,11 @@
           "buildTarget": "api:build:production"
         }
       }
+    },
+    "build":{
+      "options":{
+        "assets": ["packages/api/src/uploads"] 
+      }
     }
   }
 }
